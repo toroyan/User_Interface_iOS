@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+
+
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-   
+
     
     @IBOutlet weak var loginField: UITextField!
     
@@ -27,13 +31,16 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var dot3Image: UIImageView!
     
-    
+    var listener: AuthStateDidChangeListenerHandle?
+
     override func viewDidLoad() {
         super.viewDidLoad()
      // жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
      
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+        
+        
     }
 
 
@@ -59,13 +66,24 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        listener = Auth.auth().addStateDidChangeListener{ _, user in
+            if user != nil{
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
+            }
+        }
+        
         // уведомления о появлении и исчезновении клавиатуры
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        Auth.auth().removeStateDidChangeListener(listener!)
+        
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -76,32 +94,27 @@ class LoginViewController: UIViewController {
         self.scrollView?.endEditing(true)
     }
     
-   //привязка segue при правильном заполнении
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if( loginField.text != "" &&  passwordField.text != ""){
-            if(loginField.text=="abc" && passwordField.text == "123"){
-                return true
-            }
-                
-            else {
-               passLogError.text = ""
-                return false
-            }
-        }
+   
+
+    @IBAction func registerButton(_ sender: Any) {
+        guard let login = loginField.text,
+        let password = passwordField.text
             else{
-            passLogError.text = "Fill in the login and password"
-            passLogError.textColor = UIColor.red
-           return false
+                return
+        }
+        Auth.auth().createUser(withEmail: login, password: password) { (result, error) in
+            
+            
+            print("result",result)
+            print(error)
         }
         
-       
+        
     }
-
-
-
+    
     @IBAction func signInButton(_ sender: Any) {
         
-        UIView.animate(withDuration: 1, delay:0.2,options:.repeat, animations: {
+       /* UIView.animate(withDuration: 1, delay:0.2,options:.repeat, animations: {
             self.dot1Image.alpha = 1
         })
         UIView.animate(withDuration: 1, delay: 0.4, options:.repeat,  animations: {
@@ -109,30 +122,18 @@ class LoginViewController: UIViewController {
         })
         UIView.animate(withDuration: 1, delay: 0.6, options:.repeat, animations: {
            self.dot3Image.alpha = 1
-        })
-        guard loginField.text != "", passwordField.text != "" else{
-            passLogError.text = "Fill in the login and password"
-            passLogError.textColor = UIColor.red
-            return
+        })*/
+        guard let login = loginField.text,
+            let password = passwordField.text
+            else{
+                return
         }
-       /* if(loginField.text=="abc" && passwordField.text == "123"){
-            passLogError.text = "Valid login and password"
-            passLogError.textColor = UIColor.green
-        }*/
-        
-            // появление alert при неправильном заполнении
-             let messageAlert = UIAlertController(title: "Error", message: "Entered not right data", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            messageAlert.addAction(action)
-            present(messageAlert,animated: true,completion: nil)
-        
-        
-    }
-    
-    @IBAction func unwind(segue: UIStoryboardSegue) {
-        loginField.text=""
-        passLogError.text=""
-        passwordField.text=""
-    }
+ 
+        Auth.auth().signIn(withEmail: login, password: password) { (result, error) in
+           
+           print(result)
+            print(error)
+        }
   
+    }
 }

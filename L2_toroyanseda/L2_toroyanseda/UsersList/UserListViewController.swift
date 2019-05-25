@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class UserListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
-    
+ 
+    let db = Firestore.firestore()
    
     
     @IBOutlet weak var firstletterbuttons: FirstLetterButtons!
@@ -41,11 +44,54 @@ class UserListViewController: UIViewController, UITableViewDelegate, UITableView
         let headerNib = UINib.init(nibName: "HeaderView", bundle: Bundle.main)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: "HeaderView")
        
-    
+       
+            
+            
+        //Добавление документа в users коллекцию
+        
+      /*   var ref: DocumentReference? = nil
+        ref = db.collection("users").addDocument(data: [
+            "first": "William",
+            "last": "Peterson",
+            "born": 1990
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
+            }
+        }*/
+        
+        // Вывод данных
+        
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+        
+        //получение и изменение данных по id
+        
+        db.collection("users").document("Hs2CjWebMllQupClmKRd").setData([
+            "first": "Marry - Changed",
+            "last": "Peterson",
+            "born": 1990
+            
+            ])
        
     }
 
-    
+    // выход из приложения
+    @IBAction func logOut(_ sender: Any) {
+        try? Auth.auth().signOut()
+        let mainStoryBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "LoginViewController")
+        self.present(mainVC, animated: true)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if searching{
