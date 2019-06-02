@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F66CB14EEB9CA9093B7170F /* Pods_L2_toroyanseda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B7C6F2CA457BBAD0E059BC /* Pods_L2_toroyanseda.framework */; };
 		9E03632A22525CE800E781C8 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E03632922525CE800E781C8 /* GradientView.swift */; };
-		9E06FB42229869380075C6A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E06FB41229869380075C6A4 /* GoogleService-Info.plist */; };
+		9E099728227C37DC00A8F4C7 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E099727227C37DC00A8F4C7 /* Classes.swift */; };
 		9E11CC512236CF840037208E /* UserImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E11CC502236CF840037208E /* UserImageView.swift */; };
 		9E11CC53223703F60037208E /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E11CC52223703F60037208E /* ShadowView.swift */; };
 		9E25CCE0223314A600EEB88A /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E25CCDF223314A600EEB88A /* UserListViewController.swift */; };
@@ -20,6 +21,7 @@
 		9E28A84F224025080006053A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E28A84E224025080006053A /* HeaderView.swift */; };
 		9E28A851224025210006053A /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E28A850224025210006053A /* HeaderView.xib */; };
 		9E2A32372237A27C00BC35B7 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A32362237A27C00BC35B7 /* LikeButton.swift */; };
+		9E31F87622764DCA00194B73 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E31F87522764DCA00194B73 /* WebKit.framework */; };
 		9E393942222D9DD100C3146E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E393941222D9DD100C3146E /* AppDelegate.swift */; };
 		9E393944222D9DD100C3146E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E393943222D9DD100C3146E /* ViewController.swift */; };
 		9E393947222D9DD100C3146E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E393945222D9DD100C3146E /* Main.storyboard */; };
@@ -34,18 +36,17 @@
 		9EA1BAFF225679AD00F02CFF /* UsersphotoGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA1BAFE225679AD00F02CFF /* UsersphotoGalleryCollectionViewCell.swift */; };
 		9EBED04D224A0AAB005B2A2F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBED04C224A0AAB005B2A2F /* NewsViewController.swift */; };
 		9EBED04F224A0ADF005B2A2F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBED04E224A0ADF005B2A2F /* NewsTableViewCell.swift */; };
+		9EBEDC492297DE1A0098C680 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EBEDC482297DE1A0098C680 /* GoogleService-Info.plist */; };
 		9ED61633224D461C00A3DD0E /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED61632224D461C00A3DD0E /* CustomNavigationController.swift */; };
 		9ED61635224D489400A3DD0E /* CustomPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED61634224D489400A3DD0E /* CustomPushAnimator.swift */; };
 		9ED61637224D4B2000A3DD0E /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED61636224D4B2000A3DD0E /* CustomPopAnimator.swift */; };
 		9EE9C77A224E26F500689D99 /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE9C779224E26F500689D99 /* CustomInteractiveTransition.swift */; };
-		CE28DC17DC193EF8F8E8C773 /* Pods_L2_toroyanseda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C21ED84669A7247F027ADB /* Pods_L2_toroyanseda.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A8D828475DE05070E9A9EA9 /* Pods-L2_toroyanseda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-L2_toroyanseda.release.xcconfig"; path = "Target Support Files/Pods-L2_toroyanseda/Pods-L2_toroyanseda.release.xcconfig"; sourceTree = "<group>"; };
-		22C21ED84669A7247F027ADB /* Pods_L2_toroyanseda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L2_toroyanseda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3982D108461EE3FD73890948 /* Pods-L2_toroyanseda.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-L2_toroyanseda.release.xcconfig"; path = "Target Support Files/Pods-L2_toroyanseda/Pods-L2_toroyanseda.release.xcconfig"; sourceTree = "<group>"; };
 		9E03632922525CE800E781C8 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		9E06FB41229869380075C6A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E099727227C37DC00A8F4C7 /* Classes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		9E11CC502236CF840037208E /* UserImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageView.swift; sourceTree = "<group>"; };
 		9E11CC52223703F60037208E /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		9E25CCDF223314A600EEB88A /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		9E28A84E224025080006053A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		9E28A850224025210006053A /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		9E2A32362237A27C00BC35B7 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		9E31F87522764DCA00194B73 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9E39393E222D9DD100C3146E /* L2_toroyanseda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = L2_toroyanseda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E393941222D9DD100C3146E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E393943222D9DD100C3146E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,17 +69,19 @@
 		9E393953222D9E0300C3146E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E6CF557224B77E4002CE7DE /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		9E6CF559224BFB43002CE7DE /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		9E7502E33D6E9BE274948CF3 /* Pods-L2_toroyanseda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-L2_toroyanseda.debug.xcconfig"; path = "Target Support Files/Pods-L2_toroyanseda/Pods-L2_toroyanseda.debug.xcconfig"; sourceTree = "<group>"; };
 		9E78A82B225BBB50000F0AF8 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		9E9D2E9A223BB16900721044 /* FirstLetterButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLetterButtons.swift; sourceTree = "<group>"; };
 		9EA1BAFC2256631000F02CFF /* UserPhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		9EA1BAFE225679AD00F02CFF /* UsersphotoGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersphotoGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EBED04C224A0AAB005B2A2F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		9EBED04E224A0ADF005B2A2F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		9EBEDC482297DE1A0098C680 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9ED61632224D461C00A3DD0E /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		9ED61634224D489400A3DD0E /* CustomPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPushAnimator.swift; sourceTree = "<group>"; };
 		9ED61636224D4B2000A3DD0E /* CustomPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
 		9EE9C779224E26F500689D99 /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
-		ACEA7B2E70B9C76640110618 /* Pods-L2_toroyanseda.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-L2_toroyanseda.debug.xcconfig"; path = "Target Support Files/Pods-L2_toroyanseda/Pods-L2_toroyanseda.debug.xcconfig"; sourceTree = "<group>"; };
+		F5B7C6F2CA457BBAD0E059BC /* Pods_L2_toroyanseda.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_L2_toroyanseda.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,28 +89,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE28DC17DC193EF8F8E8C773 /* Pods_L2_toroyanseda.framework in Frameworks */,
+				9E31F87622764DCA00194B73 /* WebKit.framework in Frameworks */,
+				6F66CB14EEB9CA9093B7170F /* Pods_L2_toroyanseda.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04A8729F8734667D249A8744 /* Frameworks */ = {
+		971ADF98A83B319EAAADDEB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				22C21ED84669A7247F027ADB /* Pods_L2_toroyanseda.framework */,
+				9E31F87522764DCA00194B73 /* WebKit.framework */,
+				F5B7C6F2CA457BBAD0E059BC /* Pods_L2_toroyanseda.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8262B9C635D47E8D706535D7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				ACEA7B2E70B9C76640110618 /* Pods-L2_toroyanseda.debug.xcconfig */,
-				1A8D828475DE05070E9A9EA9 /* Pods-L2_toroyanseda.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		9E25CCDE2233144F00EEB88A /* UsersList */ = {
@@ -120,8 +117,8 @@
 				9E28A84E224025080006053A /* HeaderView.swift */,
 				9E28A850224025210006053A /* HeaderView.xib */,
 				9ED61632224D461C00A3DD0E /* CustomNavigationController.swift */,
-				9ED61634224D489400A3DD0E /* CustomPushAnimator.swift */,
 				9ED61636224D4B2000A3DD0E /* CustomPopAnimator.swift */,
+				9ED61634224D489400A3DD0E /* CustomPushAnimator.swift */,
 				9EE9C779224E26F500689D99 /* CustomInteractiveTransition.swift */,
 			);
 			path = UsersList;
@@ -163,8 +160,8 @@
 				9E39393F222D9DD100C3146E /* Products */,
 				9E03632922525CE800E781C8 /* GradientView.swift */,
 				9E393953222D9E0300C3146E /* LoginViewController.swift */,
-				8262B9C635D47E8D706535D7 /* Pods */,
-				04A8729F8734667D249A8744 /* Frameworks */,
+				9E5F6DD4637D831DE24C2A77 /* Pods */,
+				971ADF98A83B319EAAADDEB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,9 +187,19 @@
 				9E393948222D9DD200C3146E /* Assets.xcassets */,
 				9E39394A222D9DD200C3146E /* LaunchScreen.storyboard */,
 				9E39394D222D9DD200C3146E /* Info.plist */,
-				9E06FB41229869380075C6A4 /* GoogleService-Info.plist */,
+				9EBEDC482297DE1A0098C680 /* GoogleService-Info.plist */,
+				9E099727227C37DC00A8F4C7 /* Classes.swift */,
 			);
 			path = L2_toroyanseda;
+			sourceTree = "<group>";
+		};
+		9E5F6DD4637D831DE24C2A77 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E7502E33D6E9BE274948CF3 /* Pods-L2_toroyanseda.debug.xcconfig */,
+				3982D108461EE3FD73890948 /* Pods-L2_toroyanseda.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		9EBED04B224A076B005B2A2F /* NewsFeed */ = {
@@ -213,11 +220,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E393950222D9DD200C3146E /* Build configuration list for PBXNativeTarget "L2_toroyanseda" */;
 			buildPhases = (
-				D666D55F2CE59D3709DEB8C2 /* [CP] Check Pods Manifest.lock */,
+				6BA787242FE57A149B673A08 /* [CP] Check Pods Manifest.lock */,
 				9E39393A222D9DD100C3146E /* Sources */,
 				9E39393B222D9DD100C3146E /* Frameworks */,
 				9E39393C222D9DD100C3146E /* Resources */,
-				8D27865AC756461946C3703C /* [CP] Embed Pods Frameworks */,
+				12A6BDD87DE351F18063C6CF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -272,14 +279,14 @@
 				9E393947222D9DD100C3146E /* Main.storyboard in Resources */,
 				9E6CF55A224BFB43002CE7DE /* FooterView.xib in Resources */,
 				9E28A851224025210006053A /* HeaderView.xib in Resources */,
-				9E06FB42229869380075C6A4 /* GoogleService-Info.plist in Resources */,
+				9EBEDC492297DE1A0098C680 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8D27865AC756461946C3703C /* [CP] Embed Pods Frameworks */ = {
+		12A6BDD87DE351F18063C6CF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,26 +295,30 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-L2_toroyanseda/Pods-L2_toroyanseda-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +326,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-L2_toroyanseda/Pods-L2_toroyanseda-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D666D55F2CE59D3709DEB8C2 /* [CP] Check Pods Manifest.lock */ = {
+		6BA787242FE57A149B673A08 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -360,6 +371,7 @@
 				9E25CCE0223314A600EEB88A /* UserListViewController.swift in Sources */,
 				9EBED04F224A0ADF005B2A2F /* NewsTableViewCell.swift in Sources */,
 				9E25CCF42233319B00EEB88A /* NewGroupViewController.swift in Sources */,
+				9E099728227C37DC00A8F4C7 /* Classes.swift in Sources */,
 				9E25CCED22332C0A00EEB88A /* GroupListTableViewCell.swift in Sources */,
 				9ED61635224D489400A3DD0E /* CustomPushAnimator.swift in Sources */,
 				9E393944222D9DD100C3146E /* ViewController.swift in Sources */,
@@ -514,7 +526,7 @@
 		};
 		9E393951222D9DD200C3146E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACEA7B2E70B9C76640110618 /* Pods-L2_toroyanseda.debug.xcconfig */;
+			baseConfigurationReference = 9E7502E33D6E9BE274948CF3 /* Pods-L2_toroyanseda.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -535,7 +547,7 @@
 		};
 		9E393952222D9DD200C3146E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A8D828475DE05070E9A9EA9 /* Pods-L2_toroyanseda.release.xcconfig */;
+			baseConfigurationReference = 3982D108461EE3FD73890948 /* Pods-L2_toroyanseda.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
