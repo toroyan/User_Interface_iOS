@@ -160,3 +160,30 @@ class UserProfile: Mappable{
         photo <- map["photo_100"]
     }
 }
+
+class UserPhotos:Mappable{
+     var itemsResponse: [Photos]?
+    required init?(map: Map){
+    }
+    func mapping(map: Map){
+        itemsResponse <- map["response.items"]
+    }
+}
+class Photos: Mappable{
+    var type: String?
+    var url: String?
+    var likesCount: Int?
+    var repost: Int?
+    var userLikes: Int?
+    
+    
+    required init?(map: Map){
+    }
+    func mapping(map: Map){
+        type <- map["sizes.0.type"]
+        url <- map["sizes.0.url"]
+        likesCount <- map["likes.count"]
+        userLikes <- map["likes.user_likes"]
+        repost <- map["reposts.count"]
+    }
+}

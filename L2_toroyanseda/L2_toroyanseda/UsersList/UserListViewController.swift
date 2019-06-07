@@ -212,19 +212,31 @@ header.headerLabel.text = usersSectionTitle[section]
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //indexUser = indexPath.row
         
-        let indexPath = tableView.indexPathForSelectedRow
+      let indexPath = tableView.indexPathForSelectedRow
         let cell = tableView.cellForRow(at: indexPath!) as! UserListViewCell
 
         indexUser = users.firstIndex(of: (cell.userNameLabel?.text)!)!
-       
+       print("ux1", users[indexUser])
         
         self.performSegue(withIdentifier: "showInfo", sender: self)
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let info = segue.destination as! UserPhotoGalleryViewController
+        
+        
         info.newImage = users[indexUser]
+        
+        
+        
+        print("ux",users[indexUser])
         //info.toPass = users[indexUser]
-       
+ 
+        
+      /*  let mainStoryBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "Gallery") as! UserPhotoGalleryViewController
+        
+        self.present(mainVC, animated: true)*/
 
     }
     

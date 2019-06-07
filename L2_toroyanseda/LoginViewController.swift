@@ -117,14 +117,14 @@ class LoginViewController: UIViewController, WKNavigationDelegate{
             // Сохранение имени пользователя в UserDefaults
              UserDefaults.standard.set(users.firstName, forKey: "userName")
              var usersName = UserDefaults.standard.string(forKey: "userName")
-             print("Saved user Name from UserDefaults", usersName)
+           //  print("Saved user Name from UserDefaults", usersName)
                 }
             }
         }
      
         
         // Get Groups
-        let GroupURL="https://api.vk.com/method/groups.get?access_token=\(session.token)&fields=photo_100,name&extended=1&v=5.95"
+       /* let GroupURL="https://api.vk.com/method/groups.get?access_token=\(session.token)&fields=photo_100,name&extended=1&v=5.95"
         Alamofire.request(GroupURL).responseObject { (response: DataResponse<GroupsResponse>) in
             
             let gResponse = response.result.value
@@ -134,17 +134,17 @@ class LoginViewController: UIViewController, WKNavigationDelegate{
                     print("Name:" + groups.name! + " Photo:" + groups.photo!)
                 }
             }
-        }
+        }*/
     
         
         // Get Photos
-       let PhotoURL="https://api.vk.com/method/photos.getUserPhotos?access_token=\(session.token)&owner_id=-1&extended=0&v=5.95"
-        Alamofire.request(PhotoURL).responseObject { (response: DataResponse<PhotosResponse>) in
+       let PhotoURL="https://api.vk.com/method/photos.getAll?access_token=\(session.token)&owner_id=-1&extended=0&v=5.95"
+        Alamofire.request(PhotoURL).responseObject { (response: DataResponse<UserPhotos>) in
             let pResponse = response.result.value
-            if let photoItems = pResponse?.photosResponse {
+            if let photoItems = pResponse?.itemsResponse{
                 for photos in photoItems {
                     if photos.type == "m"{ // выводим только мидиум размеры
-                   // print("Photo:" + photos.url!)
+                    //print("Ph:" + photos.url!, "likes:",photos.likesCount)
                     }
                 }
             }

@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
+import AlamofireImage
+
+
 
 class ImageViewController: UIViewController {
     var counting:Int = 250
@@ -14,25 +19,27 @@ class ImageViewController: UIViewController {
    var unCheckedImage = UIImage(named: "heart_1")
     var index:Int = 0
    var isChecked:Bool = false
-  
- var i = 0
-    
+    var image = UIImage()
+    var imgMa = [UIImage]()
+    var likesTitle = [Int]()
+    var likesState = [Int]()
+    var indexSelected = Int()
+    var i = 0
+    var repostsCount = [Int]()
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
-    var image = UIImage()
-    var imgArr = [UIImage]()
- 
-    var likesTitle = [250,190,150,100,450,600,100]
-    var likesState = [0,   1,  0,  1,   1, 0,  0]
-    var indexSelected = Int()
+   
+    @IBOutlet weak var repostLabel: UILabel!
     
     override func viewDidLoad() {
        super.viewDidLoad()
+    
         
-        
-     imgArr[index] = image
+     imgMa[index] = image
+      
        imageView.image = image
+        repostLabel.text = String(repostsCount[index])
         if likesState[index] == 0{
             likeButton.setImage(unCheckedImage, for: .normal)
             likeButton.setTitle(String(likesTitle[i]), for: .normal)
@@ -45,8 +52,10 @@ class ImageViewController: UIViewController {
      
             
         }
-    
+        
+     
         imageView.isUserInteractionEnabled = true
+           if imgMa.count>1 {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipeImage(_:)))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         imageView.addGestureRecognizer(swipeLeft)
@@ -55,11 +64,11 @@ class ImageViewController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action:#selector(swipeImage(_:)))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         imageView.addGestureRecognizer(swipeRight)
-      likeButton.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+      
         
-        
+        }
     
-        
+        likeButton.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
         let zoomImage = UIPinchGestureRecognizer(target: self, action: #selector(zoomInOutImage(sender:)))
         imageView.addGestureRecognizer(zoomImage)
       
@@ -105,15 +114,11 @@ class ImageViewController: UIViewController {
                     
                 }
                
-               
-            
         }
                 
-                
-            }
+    }
     
 
-    
     @objc func zoomInOutImage(sender:UIPinchGestureRecognizer){
         guard sender.view != nil else {
             return
@@ -127,23 +132,33 @@ class ImageViewController: UIViewController {
     
     @objc func swipeImage(_ sender: UISwipeGestureRecognizer) {
        
-    // i = index
-        
+  
         switch sender.direction{
     
         case .left:
-            if (index == imgArr.count-1) && (i == likesState.count-1){
+        
+            if (index == imgMa.count-1) && (i == likesState.count-1){
                 index = 0
                 i = 0
+                 imageView.image = imgMa[index]
+            
+                repostLabel.text = String(repostsCount[index])
             }
             else{
+               
                 index = index+1
                 i = i + 1
+                if(index>imgMa.count-1){
+                    index=0
+                    i=0
+                }
+                 imageView.image = imgMa[index]
+                repostLabel.text = String(repostsCount[index])
             }
-            
+        
             leftTransition()
-         imageView.image = imgArr[index]
-         
+           
+            
             if likesState[i] == 0 {
                 likeButton.setImage(unCheckedImage, for: .normal)
                 likeButton.setTitle(String(likesTitle[i]), for: .normal)
@@ -160,35 +175,41 @@ class ImageViewController: UIViewController {
         case .right:
         
             if (index == 0) && (i == 0){
-                index = imgArr.count-1
+                index = imgMa.count-1
                 i = likesState.count-1
+                       imageView.image = imgMa[index]
+                
+                repostLabel.text = String(repostsCount[index])
             }
             else{
                 index = index-1
                 i = i-1
+                if(index<0){
+                    index = imgMa.count-1
+                }
+                       imageView.image = imgMa[index]
+                
+                repostLabel.text = String(repostsCount[index])
             }
             
             rightTransition()
-            imageView.image = imgArr[index]
+            
+          
+    
             if likesState[i] == 0 {
-               //   likeButton.tag = i
+             
                 likeButton.setImage(unCheckedImage, for: .normal)
                 likeButton.setTitle(String(likesTitle[i]), for: .normal)
-              // likeButton.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+          
                 
             }
             else {
-        //likeButton.tag = i
                 likeButton.setImage(checkedImage, for: .normal)
                 likeButton.setTitle(String(likesTitle[i]), for: .normal)
-             //  likeButton.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
+         
                 
             }
-           //  likeButton.tag = i
-          //  likeButton.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
-            
-            
-            
+         
         default: break
         }
         
@@ -204,7 +225,7 @@ class ImageViewController: UIViewController {
         leftTransition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         leftTransition.fillMode = CAMediaTimingFillMode.both
         imageView.layer.add(leftTransition, forKey: "leftTransition")
-        imageView.transform = CGAffineTransform(scaleX:0.92, y: 0.92)
+        imageView.transform = CGAffineTransform(scaleX:1, y: 1)
         
       
         
@@ -220,51 +241,9 @@ class ImageViewController: UIViewController {
         imageView.layer.add(rightTransition, forKey: "rightTransition")
         imageView.transform = CGAffineTransform(scaleX:0.92, y: 0.92)
         
-        
-        
     }
-    
-    
-    
-    
-  /* func createLikeButton(){
-    
-           var button = UIButton()
-            button.frame = CGRect (x: 200, y: 730, width: 16, height: 16)
-     button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
-     if(isChecked == true){
-       var  unCheckedImage = UIImage(named:"heart_2")
-          button.setImage(unCheckedImage, for: .normal)
-     }
-        else {
-               var  unCheckedImage = UIImage(named:"heart_1")
-          button.setImage(unCheckedImage, for: .normal)
-        }
-        
-    
-    view.addSubview(button)
-    }
-    */
 
-
-     /*   var i = 0
-
-            var button = UIButton()
-            button.frame = CGRect (x: 200, y: 730, width: 16, height: 16)
-         //   button.tag = i
-            if(isChecked == true){
-                button.setImage(checkedImage, for: .normal)}
-            else{
-                button.setImage(unCheckedImage, for: .normal)
-            }
-            button.addTarget(self, action: #selector(buttonAction(sender:)), for: .touchUpInside)
-        
-            view.addSubview(button)
-            i = i+1*/
-        }
-        
-        
-        
+}
 
 
    
