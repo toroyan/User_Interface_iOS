@@ -12,11 +12,17 @@ class FooterView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var lineView: UIView!
     
+    @IBOutlet weak var likesLabel: UILabel!
+    
     
     @IBOutlet weak var likeButton: UIButton!
     
+    @IBOutlet weak var commentLabel: UILabel!
     
     @IBOutlet weak var commentButton: UIButton!
     
     @IBOutlet weak var shareButton: UIButton!
+    
+    @IBOutlet weak var repostLabel: UILabel!
+    
 }

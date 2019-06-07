@@ -7,8 +7,18 @@
 //
 
 import UIKit
-
-class LoginViewController: UIViewController {
+import Alamofire
+import WebKit
+import AlamofireObjectMapper
+import SwiftKeychainWrapper
+class Session{
+    static let shared = Session()
+    private init() {}
+    var userId: Int = 0
+    var token:String = ""
+    
+}
+class LoginViewController: UIViewController, WKNavigationDelegate{
 
     @IBOutlet weak var scrollView: UIScrollView!
    
@@ -26,18 +36,167 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var dot2Image: UIImageView!
     
     @IBOutlet weak var dot3Image: UIImageView!
+   
+    
+    @IBOutlet weak var webView: WKWebView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        webView.navigationDelegate = self
      // жест нажатия
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
      
         scrollView?.addGestureRecognizer(hideKeyboardGesture)
+  
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "oauth.vk.com"
+        urlComponents.path = "/authorize"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "client_id", value: "6964680"),
+            URLQueryItem(name: "display", value: "mobile"),
+            URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
+            URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "response_type", value: "token"),
+            URLQueryItem(name: "v", value: "5.95"),
+            URLQueryItem(name: "revoke", value: "1")
+        ]
+        
+        let request = URLRequest(url: urlComponents.url!)
+        
+        webView.load(request)
+
+    }
+
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+   
+        // Сохранение токена в  KeyChain
+       let session = Session.shared
+       var tokenData = KeychainWrapper.standard.string(forKey: "token")
+        
+        if tokenData == nil{
+            guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment  else {
+                decisionHandler(.allow)
+                return
+            }
+            
+            let params = fragment
+                .components(separatedBy: "&")
+                .map { $0.components(separatedBy: "=") }
+                .reduce([String: String]()) { result, param in
+                    var dict = result
+                    let key = param[0]
+                    let value = param[1]
+                    dict[key] = value
+                    return dict
+            }
+            
+            KeychainWrapper.standard.set(params["access_token"]!, forKey: "token")
+            tokenData = KeychainWrapper.standard.string(forKey: "token")
+            print("setting new token")
+         
+        }
+           session.token = tokenData!
+        print("session.token",session.token)
+        KeychainWrapper.standard.removeAllKeys()
+        
+        
+        
+        // Get Friends
+        let URL="https://api.vk.com/method/friends.get?access_token=\(session.token)&fields=photo_100,order=random&v=5.95"
+        Alamofire.request(URL).responseObject { (response: DataResponse<UserResponse>) in
+            
+            let uResponse = response.result.value
+            if let userItems = uResponse?.itemsResponse {
+                for users in userItems {
+                //  print("Name:" + users.firstName! + " Surname:" + users.lastName! + " Photo:" + users.photo!)
+                 
+            // Сохранение имени пользователя в UserDefaults
+             UserDefaults.standard.set(users.firstName, forKey: "userName")
+             var usersName = UserDefaults.standard.string(forKey: "userName")
+             print("Saved user Name from UserDefaults", usersName)
+                }
+            }
+        }
+     
+        
+        // Get Groups
+        let GroupURL="https://api.vk.com/method/groups.get?access_token=\(session.token)&fields=photo_100,name&extended=1&v=5.95"
+        Alamofire.request(GroupURL).responseObject { (response: DataResponse<GroupsResponse>) in
+            
+            let gResponse = response.result.value
+            
+            if let groupItems = gResponse?.itemsResponse {
+                for groups in groupItems {
+                    print("Name:" + groups.name! + " Photo:" + groups.photo!)
+                }
+            }
+        }
+    
+        
+        // Get Photos
+       let PhotoURL="https://api.vk.com/method/photos.getUserPhotos?access_token=\(session.token)&owner_id=-1&extended=0&v=5.95"
+        Alamofire.request(PhotoURL).responseObject { (response: DataResponse<PhotosResponse>) in
+            let pResponse = response.result.value
+            if let photoItems = pResponse?.photosResponse {
+                for photos in photoItems {
+                    if photos.type == "m"{ // выводим только мидиум размеры
+                   // print("Photo:" + photos.url!)
+                    }
+                }
+            }
+        }
+   
+        // get Wall recordings
+       /* let WallURL="https://api.vk.com/method/wall.get?access_token=\(session.token)&extended=1&fields=first_name,last_name,photo_100&v=5.95"
+        Alamofire.request(WallURL).responseObject { (response: DataResponse<WallRecords>) in
+            
+            let wResponse = response.result.value
+      
+            if let wallItems = wResponse?.itemsResponse{
+                for groups in wallItems{
+                     print("SomeData",groups.comment!,groups.date!,groups.fromId!,groups.text!, groups.like, groups.fromId)
+                   // if(groups.type == "photo"){
+                      //  print("phur",groups.typePhoto,groups.url)
+                    //}
+                 
+                        
+                    }
+                
+                }
+            }*/
+         
+    
+        
+        // get senders datas
+      /*  let WallProfile="https://api.vk.com/method/wall.get?access_token=\(session.token)&extended=1&fields=first_name,last_name,photo_100&v=5.95"
+        Alamofire.request(WallProfile).responseObject { (response: DataResponse<Profiles>) in
+            
+            let wResponse = response.result.value
+            
+            if let wallItems = wResponse?.profiles{
+                for groups in wallItems{
+                    print(groups.firstName,groups.id,groups.lastName,groups.photo)
+                }
+            }
+        }
+        */
+        
+        
+        
+        
+        let mainStoryBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = mainStoryBoard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
+      
+        self.present(mainVC, animated: true)
+        
+        decisionHandler(.cancel)
     }
 
 
-    
     
     // Появление клавиатуры
     @objc func keyboardWasShown(notification: Notification) {
@@ -115,11 +274,6 @@ class LoginViewController: UIViewController {
             passLogError.textColor = UIColor.red
             return
         }
-       /* if(loginField.text=="abc" && passwordField.text == "123"){
-            passLogError.text = "Valid login and password"
-            passLogError.textColor = UIColor.green
-        }*/
-        
             // появление alert при неправильном заполнении
              let messageAlert = UIAlertController(title: "Error", message: "Entered not right data", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
